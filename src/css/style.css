@@ -1,0 +1,15 @@
+/* When app code has been loaded it sets the js-active class on the document.
+   Hide .no-js elements when this is the case.
+ */
+html.js-active .no-js {
+    display: none;
+}
+
+#todo-list [data-todo-status="done"] {
+    color: gray;
+    text-decoration: line-through;
+}
+
+#todo-list [data-todo-status="done"] .done-btn {
+    display: none;
+}
