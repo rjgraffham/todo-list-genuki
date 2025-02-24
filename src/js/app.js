@@ -106,7 +106,9 @@
         const id = crypto.randomUUID();
 
         const text = itemEntry.value.trim();
-        if(text === "") { return; }
+        if(text === "") {
+            return;
+        }
 
         const timestamp = Date.now();
 
