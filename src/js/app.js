@@ -66,7 +66,7 @@
         navigator.clipboard.writeText(exported).then(() => {
             alert("Exported todo items to clipboard.");
         }).catch(() => {
-            alert("Could not write to clipboard. Copy the following text manually: " + exported);
+            alert("Could not write to clipboard. Copy the following export string manually:\n" + exported);
         });
     };
 
@@ -82,13 +82,15 @@
                     window.localStorage.setItem(id, JSON.stringify(entry));
                 }
                 buildList();
+
+                alert("Imported todo items from clipboard.");
             } catch {
-                alert("Imported clipboard text was not a valid export. Cancelling import.")
+                alert("Clipboard contents were not a valid todo items export.")
             }
         };
 
         navigator.clipboard.readText().then(tryImport).catch(() => {
-            tryImport(prompt("Could not read from clipboard. Paste the exported text manually:"));
+            tryImport(prompt("Could not read from clipboard. Paste the export string manually:"));
         });
     };
 
