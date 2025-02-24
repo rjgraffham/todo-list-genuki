@@ -25,4 +25,4 @@ jobs:
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
       - name: Sync current files to storage account, deleting anything no longer present
-        run: az storage blob sync --source ./src --container '$web' --delete-destination --connection-string '${{ secrets.AZURE_CONN_STRING }}'
+        run: az storage blob sync --source ./src --container '$web' --delete-destination true --connection-string '${{ secrets.AZURE_CONN_STRING }}'
