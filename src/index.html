@@ -26,20 +26,31 @@
 
 <body>
 
-  <h1>Todo List</h1>
+  <header>
+
+    <h1>Todo List</h1>
+
+    <form id="import-export">
+      <input type="button" id="import-btn" value="Import" />
+      <input type="button" id="export-btn" value="Export" />
+    </form>
+
+    <form id="todo-item-form">
+      <input type="text" id="todo-item-entry" />
+      <input type="submit" id="add-todo-item-btn" value="Add Item" />
+    </form>
+
+  </header>
   
-  <p class="no-js">
-    This page requires Javascript to work. If this message does not disappear shortly, please enable
-    Javascript in your browser, or access the page from a different browser if your browser does not
-    support Javascript.
-  </p>
+  <main>
+    <p class="no-js">
+      This page requires Javascript to work. If this message does not disappear shortly, please enable
+      Javascript in your browser, or access the page from a different browser if your browser does not
+      support Javascript.
+    </p>
 
-  <form id="todo-item-form">
-    <input type="text" id="todo-item-entry" />
-    <input type="submit" id="add-todo-item-btn" value="Add Item">
-  </form>
-
-  <ul id="todo-list"></ul>
+    <ul id="todo-list"></ul>
+  </main>
 
   <script src="js/app.js"></script>
 

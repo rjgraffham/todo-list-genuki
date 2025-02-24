@@ -4,21 +4,17 @@
     // Set the `js-active` class on the root element to hide the no-js content.
     document.documentElement.classList.add("js-active");
 
-    // Helper functions to read and write JSON values from localStorage
-    const getLSJson = (key) => {
-        return JSON.parse(window.localStorage.getItem(key));
-    }
-
-    const setLSJson = (key, value) => {
-        return window.localStorage.setItem(key, JSON.stringify(value));
-    }
+    const todoList = document.getElementById("todo-list");
 
     // Helper function to build an item element and add it to the list.
-    const todoList = document.getElementById("todo-list");
     const addListItem = (id, text, status, timestamp) => {
         const thisEntry = document.createElement("li");
+        const entryText = document.createElement("span");
         thisEntry.dataset.todoStatus = status;
-        thisEntry.innerText = text;
+        thisEntry.dataset.todoTimestamp = timestamp;
+        entryText.classList.add("todo-item-text");
+        entryText.innerText = text;
+        thisEntry.appendChild(entryText);
 
         const removeBtn = document.createElement("input");
         removeBtn.classList.add("remove-btn");
@@ -36,7 +32,8 @@
         doneBtn.value = "Done";
 
         doneBtn.addEventListener("click", () => {
-            setLSJson(id, {text, status: "done", timestamp});
+            const timestamp = Number.parseInt(thisEntry.dataset.todoTimestamp);
+            window.localStorage.setItem(id, JSON.stringify({text, status: "done", timestamp}));
             thisEntry.dataset.todoStatus = "done";
         });
 
@@ -45,15 +42,59 @@
         todoList.appendChild(thisEntry);
     };
 
-    // Build list entries for all todo items currently in localStorage.
-    let todoItems = [];
-    for(const id of Object.keys(window.localStorage)) {
-        todoItems.push({...getLSJson(id), id});
+    const buildList = () => {
+        // Clear currently present items
+        todoList.innerHTML = "";
+
+        // Build list entries for all todo items currently in localStorage.
+        let todoItems = [];
+        for(const id of Object.keys(window.localStorage)) {
+            todoItems.push({...JSON.parse(window.localStorage.getItem(id)), id});
+        }
+        todoItems.sort((a, b) => a.timestamp - b.timestamp);
+        for(const item of todoItems) {
+            addListItem(item.id, item.text, item.status);
+        }
     }
-    todoItems.sort((a, b) => a.timestamp - b.timestamp);
-    for(const item of todoItems) {
-        addListItem(item.id, item.text, item.status);
-    }
+
+    const exportItems = () => {
+        let todoItems = {};
+        for(const id of Object.keys(window.localStorage)) {
+            todoItems[id] = JSON.parse(window.localStorage[id]);
+        }
+
+        const exported = window.btoa(JSON.stringify(todoItems));
+
+        navigator.clipboard.writeText(exported).catch(() => {
+            alert("Could not write to clipboard. Copy the following text manually: " + exported);
+        });
+    };
+
+    const importItems = () => {
+        const tryImport = (importString) => {
+            try {
+                const todoItems = JSON.parse(window.atob(importString));
+
+                // If we didn't throw an error already, we loaded a valid export, so clear
+                // localStorage, store the imported items to it, and then rebuild the displayed list
+                window.localStorage.clear()
+                for(const [id, entry] of Object.entries(todoItems)) {
+                    window.localStorage.setItem(id, JSON.stringify(entry));
+                }
+                buildList();
+            } catch {
+                alert("Imported clipboard text was not a valid export. Cancelling import.")
+            }
+        };
+
+        navigator.clipboard.readText().then(tryImport).catch(() => {
+            tryImport(prompt("Could not read from clipboard. Paste the exported text manually:"));
+        });
+    };
+
+    // Bind the export/import buttons' listeners
+    document.getElementById("import-btn").addEventListener("click", importItems);
+    document.getElementById("export-btn").addEventListener("click", exportItems);
 
     // Bind a listener to the Add Item which creates a new item in localStorage and builds the element.
     const itemEntry = document.getElementById("todo-item-entry");
@@ -62,9 +103,11 @@
         const id = crypto.randomUUID();
         const text = itemEntry.value;
         const timestamp = Date.now();
-        setLSJson(id, {text, status: "todo", timestamp});
+        window.localStorage.setItem(id, JSON.stringify({text, status: "todo", timestamp}))
         addListItem(id, text, "todo", timestamp);
         itemEntry.value = "";
     });
 
+    // On page load, build the list.
+    buildList();
 })();

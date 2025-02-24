@@ -5,9 +5,80 @@ html.js-active .no-js {
     display: none;
 }
 
-#todo-list [data-todo-status="done"] {
+body {
+    margin: 0;
+    padding: 2rem;
+    font-family: sans-serif;
+}
+
+header, main {
+    margin: 0 auto;
+    width: auto;
+    max-width: 80ch;
+}
+
+header {
+    text-align: center;
+    padding-bottom: 2.5rem;
+    position: relative;
+}
+
+#import-export {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#import-export input {
+    padding: 0.5rem;
+}
+
+input[type="text"], input[type="button"], input[type="submit"] {
+    padding: 1rem;
+}
+
+#todo-item-form {
+    display: flex;
+    font-size: 1rem;
+    column-gap: 1rem;
+    margin: 3rem 0;
+}
+
+#todo-item-entry {
+    flex-grow: 1;
+}
+
+#todo-list {
+    padding: 1rem;
+}
+
+#todo-list li {
+    list-style: none;
+    display: grid;
+    column-gap: 1rem;
+    margin: 1rem;
+    grid-template-columns: auto 10ch 10ch;
+}
+
+.todo-item-text {
+    grid-column: 1;
+}
+
+.remove-btn {
+    grid-column: 2;
+}
+
+.done-btn {
+    grid-column: 3;
+}
+
+#todo-list [data-todo-status="done"] .todo-item-text {
     color: gray;
     text-decoration: line-through;
+}
+
+#todo-list [data-todo-status="done"] .remove-btn {
+    grid-column: span 2;
 }
 
 #todo-list [data-todo-status="done"] .done-btn {
