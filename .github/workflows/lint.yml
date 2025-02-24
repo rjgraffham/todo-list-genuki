@@ -6,6 +6,8 @@ on:
         - main
     paths:
         - src/js/**
+        - package.json
+        - package-lock.json
 
 jobs:
   lint:
@@ -14,6 +16,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Install project dependencies
+        run: npm ci
 
       - name: Lint
         run: eslint ./src/js --ext .js,.jsx,.ts,.tsx
