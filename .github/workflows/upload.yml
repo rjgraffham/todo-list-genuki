@@ -3,7 +3,9 @@ name: Upload to Azure Blob Storage
 on:
   push:
     branches:
-      - main
+        - main
+    paths:
+        - src/**
 
 jobs:
   upload:
