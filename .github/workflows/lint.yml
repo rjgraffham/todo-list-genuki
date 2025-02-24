@@ -8,9 +8,7 @@ on:
         - src/js/**
 
 jobs:
-  upload:
-    environment: Upload
-
+  lint:
     runs-on: ubuntu-latest
 
     steps:
