@@ -8,6 +8,7 @@ on:
         - src/js/**
         - package.json
         - package-lock.json
+        - eslint.config.js
 
 jobs:
   lint:
