@@ -9,7 +9,7 @@ on:
 
 jobs:
   upload:
-    environment: Upload
+    environment: rjgtodolist
 
     runs-on: ubuntu-latest
 
