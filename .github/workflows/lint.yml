@@ -9,6 +9,7 @@ on:
         - package.json
         - package-lock.json
         - eslint.config.js
+        - .github/workflows/lint.yml
 
 jobs:
   lint:
