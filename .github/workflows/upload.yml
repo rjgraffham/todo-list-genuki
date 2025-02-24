@@ -15,14 +15,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js (required for Azure CLI)
-        uses: actions/setup-node@v3
+      - name: Sync current src directory to storage account, deleting anything no longer present
+        uses: azure/cli@v2
         with:
-          node-version: '18.x'
-
-      - name: Install Azure CLI
-        run: |
-          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-
-      - name: Sync current files to storage account, deleting anything no longer present
-        run: az storage blob sync --source ./src --container '$web' --delete-destination true --connection-string '${{ secrets.AZURE_CONN_STRING }}'
+            azcliversion: latest
+            inlineScript: |
+                az storage blob sync --source ./src --container '$web' --delete-destination true \
+                --connection-string '${{ secrets.AZURE_CONN_STRING }}'
