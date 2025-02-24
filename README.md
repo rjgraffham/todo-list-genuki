@@ -1,4 +1,4 @@
-# Todo List CI/CD demo
+# [Todo List CI/CD demo](https://rjgtodolist.z33.web.core.windows.net/)
 
 [![Upload status](https://github.com/rjgraffham/todo-list-genuki/actions/workflows/upload.yml/badge.svg)](https://rjgtodolist.z33.web.core.windows.net/)
 
