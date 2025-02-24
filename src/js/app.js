@@ -98,11 +98,20 @@
     const itemEntry = document.getElementById("todo-item-entry");
     document.getElementById("todo-item-form").addEventListener("submit", (e) => {
         e.preventDefault();
+
         const id = crypto.randomUUID();
-        const text = itemEntry.value;
+
+        const text = itemEntry.value.trim();
+        if(text === "") {
+            return;
+        }
+
         const timestamp = Date.now();
+
         window.localStorage.setItem(id, JSON.stringify({text, status: "todo", timestamp}))
+
         addListItem(id, text, "todo", timestamp);
+        
         itemEntry.value = "";
     });
 
