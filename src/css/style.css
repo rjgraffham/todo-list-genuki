@@ -23,6 +23,12 @@ header {
     position: relative;
 }
 
+#gh-source {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 #import-export {
     position: absolute;
     top: 0;
