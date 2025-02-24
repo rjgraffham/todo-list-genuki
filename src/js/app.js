@@ -11,7 +11,6 @@
         const thisEntry = document.createElement("li");
         const entryText = document.createElement("span");
         thisEntry.dataset.todoStatus = status;
-        thisEntry.dataset.todoTimestamp = timestamp;
         entryText.classList.add("todo-item-text");
         entryText.innerText = text;
         thisEntry.appendChild(entryText);
@@ -32,7 +31,6 @@
         doneBtn.value = "Done";
 
         doneBtn.addEventListener("click", () => {
-            const timestamp = Number.parseInt(thisEntry.dataset.todoTimestamp);
             window.localStorage.setItem(id, JSON.stringify({text, status: "done", timestamp}));
             thisEntry.dataset.todoStatus = "done";
         });
@@ -53,7 +51,7 @@
         }
         todoItems.sort((a, b) => a.timestamp - b.timestamp);
         for(const item of todoItems) {
-            addListItem(item.id, item.text, item.status);
+            addListItem(item.id, item.text, item.status, item.timestamp);
         }
     }
 
