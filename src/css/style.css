@@ -57,7 +57,7 @@ input[type="text"], input[type="button"], input[type="submit"] {
     display: grid;
     column-gap: 1rem;
     margin: 1rem;
-    grid-template-columns: auto 10ch 10ch;
+    grid-template-columns: auto min(10ch, 20vw) min(10ch, 20vw);
 }
 
 .todo-item-text {
