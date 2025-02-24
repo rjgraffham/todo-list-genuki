@@ -63,7 +63,9 @@
 
         const exported = window.btoa(JSON.stringify(todoItems));
 
-        navigator.clipboard.writeText(exported).catch(() => {
+        navigator.clipboard.writeText(exported).then(() => {
+            alert("Exported todo items to clipboard.");
+        }).catch(() => {
             alert("Could not write to clipboard. Copy the following text manually: " + exported);
         });
     };
@@ -111,7 +113,7 @@
         window.localStorage.setItem(id, JSON.stringify({text, status: "todo", timestamp}))
 
         addListItem(id, text, "todo", timestamp);
-        
+
         itemEntry.value = "";
     });
 
