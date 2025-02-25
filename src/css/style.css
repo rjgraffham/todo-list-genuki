@@ -53,17 +53,13 @@ input[type="text"], input[type="button"], input[type="submit"] {
     font-weight: bold;
 }
 
-input[type="text"]:focus {
-    outline: 0.15em solid royalblue;
-}
-
-input[type="button"]:focus, input[type="submit"]:focus {
-    outline: none;
-}
-
 input[type="button"], input[type="submit"] {
     box-shadow:rgb(0 0 255 / 40%) 0.15em 0.25em;
     transform: translate(-0.15em, -0.25em);
+}
+
+input[type="text"] {
+    box-shadow:rgb(0 0 255 / 7%) 0.2em 0.3em inset;
 }
 
 input[type="button"]:hover, input[type="submit"]:hover {
@@ -71,8 +67,12 @@ input[type="button"]:hover, input[type="submit"]:hover {
     transform: translate(-0.2em, -0.3em);
 }
 
-input[type="text"] {
-    box-shadow:rgb(0 0 255 / 7%) 0.2em 0.3em inset;
+input[type="text"]:focus {
+    outline: 0.15em solid royalblue;
+}
+
+input[type="button"]:focus, input[type="submit"]:focus {
+    outline: none;
 }
 
 input[type="button"]:active, input[type="submit"]:active {
