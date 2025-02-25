@@ -8,6 +8,7 @@ html.js-active .no-js {
 html {
     background-color: paleturquoise;
     color: royalblue;
+    filter: hue-rotate(90deg);
 }
 
 body {
