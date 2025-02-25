@@ -56,6 +56,9 @@ input[type="text"], input[type="button"], input[type="submit"] {
 input[type="button"], input[type="submit"] {
     box-shadow:rgb(0 0 255 / 40%) 0.15em 0.25em;
     transform: translate(-0.15em, -0.25em);
+    transition-timing-function: ease-in-out;
+    transition-property: transform, box-shadow;
+    transition-duration: 0.1s;
 }
 
 input[type="text"] {
