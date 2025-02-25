@@ -42,7 +42,7 @@
 
     const buildList = () => {
         // Clear currently present items
-        todoList.innerHTML = "";
+        todoList.replaceChildren();
 
         // Build list entries for all todo items currently in localStorage.
         let todoItems = [];
