@@ -54,17 +54,17 @@ input[type="text"], input[type="button"], input[type="submit"] {
 }
 
 input[type="button"], input[type="submit"] {
-    box-shadow:rgba(0, 0, 255, 40%) 0.15em 0.25em;
+    box-shadow:rgb(0 0 255 / 40%) 0.15em 0.25em;
     transform: translate(-0.15em, -0.25em);
 }
 
 input[type="button"]:hover, input[type="submit"]:hover {
-    box-shadow:rgba(0, 0, 255, 40%) 0.2em 0.3em;
+    box-shadow:rgb(0 0 255 / 40%) 0.2em 0.3em;
     transform: translate(-0.2em, -0.3em);
 }
 
 input[type="text"] {
-    box-shadow:rgba(0, 0, 255, 7%) 0.2em 0.3em inset;
+    box-shadow:rgb(0 0 255 / 7%) 0.2em 0.3em inset;
 }
 
 input[type="button"]:active, input[type="submit"]:active {
@@ -95,7 +95,7 @@ input[type="button"]:active, input[type="submit"]:active {
     margin: 1rem 0;
     border-style: none;
     border-radius: 1em;
-    background-color: rgba(255, 255, 255, 40%);
+    background-color: rgb(255 255 255 / 40%);
     grid-template-columns: auto min(10ch, 20vw) min(10ch, 20vw);
 }
 
