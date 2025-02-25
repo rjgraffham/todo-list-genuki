@@ -53,6 +53,14 @@ input[type="text"], input[type="button"], input[type="submit"] {
     font-weight: bold;
 }
 
+input[type="text"]:focus {
+    outline: 0.15em solid royalblue;
+}
+
+input[type="button"]:focus, input[type="submit"]:focus {
+    outline: none;
+}
+
 input[type="button"], input[type="submit"] {
     box-shadow:rgb(0 0 255 / 40%) 0.15em 0.25em;
     transform: translate(-0.15em, -0.25em);
@@ -112,7 +120,7 @@ input[type="button"]:active, input[type="submit"]:active {
 }
 
 #todo-list [data-todo-status="done"] .todo-item-text {
-    color: gray;
+    color: rgb(130 180 255);
     text-decoration: line-through;
 }
 
