@@ -5,6 +5,11 @@ html.js-active .no-js {
     display: none;
 }
 
+html {
+    background-color: paleturquoise;
+    color: royalblue;
+}
+
 body {
     margin: 0;
     padding: 2rem;
@@ -23,6 +28,12 @@ header {
     position: relative;
 }
 
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    padding-bottom: 1.5rem;
+}
+
 #import-export {
     position: absolute;
     top: 0;
@@ -35,6 +46,30 @@ header {
 
 input[type="text"], input[type="button"], input[type="submit"] {
     padding: 1rem;
+    border-style: none;
+    border-radius: 1em;
+    background-color: aliceblue;
+    color: royalblue;
+    font-weight: bold;
+}
+
+input[type="button"], input[type="submit"] {
+    box-shadow:rgba(0, 0, 255, 40%) 0.15em 0.25em;
+    transform: translate(-0.15em, -0.25em);
+}
+
+input[type="button"]:hover, input[type="submit"]:hover {
+    box-shadow:rgba(0, 0, 255, 40%) 0.2em 0.3em;
+    transform: translate(-0.2em, -0.3em);
+}
+
+input[type="text"] {
+    box-shadow:rgba(0, 0, 255, 7%) 0.2em 0.3em inset;
+}
+
+input[type="button"]:active, input[type="submit"]:active {
+    box-shadow: none;
+    transform: none;
 }
 
 #todo-item-form {
@@ -56,7 +91,11 @@ input[type="text"], input[type="button"], input[type="submit"] {
     list-style: none;
     display: grid;
     column-gap: 1rem;
-    margin: 1rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-style: none;
+    border-radius: 1em;
+    background-color: rgba(255, 255, 255, 40%);
     grid-template-columns: auto min(10ch, 20vw) min(10ch, 20vw);
 }
 
