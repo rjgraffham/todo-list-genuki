@@ -13,6 +13,9 @@ html {
 body {
     margin: 0;
     padding: 2rem;
+}
+
+body, input {
     font-family: Roboto, sans-serif;
     font-optical-sizing: auto;
     font-variation-settings: "wdth" 87.5;
