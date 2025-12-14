@@ -10,7 +10,9 @@ on:
 
 jobs:
   upload:
-    environment: rjgtodolist
+    environment:
+      name: github-pages
+      url: ${{steps.deploy.outputs.page_url}}
 
     runs-on: ubuntu-latest
 
@@ -18,10 +20,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Sync current src directory to storage account, deleting anything no longer present
-        uses: azure/cli@v2
+      - name: Configure Github Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload src directory as artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-            azcliversion: latest
-            inlineScript: |
-                az storage blob sync --source ./src --container '$web' --delete-destination true \
-                --connection-string '${{ secrets.AZURE_CONN_STRING }}'
+          path: src/
+
+      - name: Deploy artifact to Github Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
