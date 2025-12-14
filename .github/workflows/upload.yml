@@ -28,10 +28,18 @@ jobs:
       - name: Configure Github Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload src directory as artifact
+      - name: Setup Bun bundler/builder
+        uses: oven-sh/setup-bun@v2
+
+      - name: Build bundled version
+        run: |
+          mkdir -p build/
+          bun build src/index.html --minify --outdir=build
+
+      - name: Upload build directory as artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: src/
+          path: build/
 
       - name: Deploy artifact to Github Pages
         id: deploy
