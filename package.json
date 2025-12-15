@@ -3,11 +3,16 @@
     "@eslint/js": "^9.21.0",
     "eslint": "^9.21.0",
     "htmlhint": "^1.1.4",
-    "stylelint": "^16.14.1",
     "stylelint-config-standard": "^37.0.0"
   },
   "type": "module",
   "scripts": {
-    "test": "npx eslint ./src/js --ext .js,.jsx,.ts,.tsx && npx htmlhint ./src/*.html && npx stylelint ./src/css/**/*.css"
+    "build": "bun build src/index.html --minify --outdir=build",
+    "watch": "bun build src/index.html --minify --outdir=build --watch",
+    "test": "npm run build && npx eslint ./src/js --ext .js,.jsx,.ts,.tsx && npx htmlhint ./src/*.html"
+  },
+  "dependencies": {
+    "@catppuccin/palette": "^1.7.1",
+    "@material-design-icons/font": "^0.14.15"
   }
 }

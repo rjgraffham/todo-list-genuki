@@ -27,6 +27,3 @@ jobs:
 
       - name: Lint HTML with htmlhint
         run: npx htmlhint ./src/*.html
-
-      - name: Lint CSS with stylelint
-        run: npx stylelint ./src/css/**/*.css

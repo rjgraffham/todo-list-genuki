@@ -5,6 +5,25 @@ import { readFile, writeFile } from './files'
 // Set the `js-active` class on the root element to hide the no-js content.
 document.documentElement.classList.add("js-active");
 
+// If the user prefers light themes, pre-check the checkbox
+matchMedia("(prefers-color-scheme: light)").addEventListener("change", (e) => {
+    if (e.matches) {
+        document.getElementById("light-theme").checked = true;
+        document.getElementById("light-theme-label").textContent = "light_mode";
+    } else {
+        document.getElementById("light-theme").checked = false;
+        document.getElementById("light-theme-label").textContent = "dark_mode";
+    }
+});
+
+document.getElementById("light-theme").addEventListener("change", (e) => {
+    if (e.target.checked) {
+        document.getElementById("light-theme-label").textContent = "light_mode";
+    } else {
+        document.getElementById("light-theme-label").textContent = "dark_mode";
+    }
+})
+
 const todoList = document.getElementById("todo-list");
 
 // Helper function to build an item element and add it to the list.

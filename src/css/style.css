@@ -1,3 +1,6 @@
+@import "@catppuccin/palette/css/catppuccin.css";
+@import "@material-design-icons/font/filled.css";
+
 /* When app code has been loaded it sets the js-active class on the document.
    Hide .no-js elements when this is the case.
  */
@@ -6,8 +9,28 @@ html.js-active .no-js {
 }
 
 html {
-    background-color: paleturquoise;
-    color: royalblue;
+    --theme-bg: var(--ctp-macchiato-base);
+    --theme-text: var(--ctp-macchiato-text);
+    --theme-text-subtle: var(--ctp-macchiato-overlay1);
+    --theme-input-bg: var(--ctp-macchiato-surface2);
+    --theme-input-shadow: var(--ctp-macchiato-surface0);
+    --theme-active-border: var(--ctp-macchiato-lavender);
+    --theme-item-bg: var(--ctp-macchiato-crust);
+}
+
+html:has(#light-theme:checked) {
+    --theme-bg: var(--ctp-latte-base);
+    --theme-text: var(--ctp-latte-text);
+    --theme-text-subtle: var(--ctp-latte-overlay1);
+    --theme-input-bg: var(--ctp-latte-surface0);
+    --theme-input-shadow: var(--ctp-latte-surface2);
+    --theme-active-border: var(--ctp-latte-lavender);
+    --theme-item-bg: var(--ctp-latte-crust);
+}
+
+html {
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
 }
 
 body {
@@ -39,6 +62,16 @@ h1 {
     padding-bottom: 1.5rem;
 }
 
+#toggle-theme {
+    position: absolute;
+    top: 1rem; left: 1rem;
+    opacity: 50%;
+}
+
+#light-theme {
+    display: none;
+}
+
 #import-export {
     position: absolute;
     top: 0;
@@ -53,13 +86,13 @@ input[type="text"], input[type="button"], input[type="submit"] {
     padding: 1rem;
     border-style: none;
     border-radius: 1em;
-    background-color: aliceblue;
-    color: royalblue;
+    background-color: var(--theme-input-bg);
+    color: var(--theme-text);
     font-weight: bold;
 }
 
 input[type="button"], input[type="submit"] {
-    box-shadow:rgb(0 0 255 / 40%) 0.15em 0.25em;
+    box-shadow:var(--theme-input-shadow) 0.15em 0.25em;
     transform: translate(-0.15em, -0.25em);
     transition-timing-function: ease-in-out;
     transition-property: transform, box-shadow;
@@ -67,21 +100,21 @@ input[type="button"], input[type="submit"] {
 }
 
 input[type="text"] {
-    box-shadow:rgb(0 0 255 / 7%) 0.2em 0.3em inset;
+    box-shadow:var(--theme-input-shadow) 0.2em 0.3em inset;
     font-weight: normal;
 }
 
 input::placeholder {
-    color: rgb(160 160 160);
+    color: var(--theme-text-subtle);
 }
 
 input[type="button"]:hover, input[type="submit"]:hover {
-    box-shadow:rgb(0 0 255 / 40%) 0.2em 0.3em;
+    box-shadow:var(--theme-input-shadow) 0.2em 0.3em;
     transform: translate(-0.2em, -0.3em);
 }
 
 input[type="text"]:focus {
-    outline: 0.15em solid royalblue;
+    outline: 0.15em solid var(--theme-active-border);
 }
 
 input[type="button"]:focus, input[type="submit"]:focus {
@@ -116,7 +149,7 @@ input[type="button"]:active, input[type="submit"]:active {
     margin: 1rem 0;
     border-style: none;
     border-radius: 1em;
-    background-color: rgb(255 255 255 / 40%);
+    background-color: var(--theme-item-bg);
     grid-template-columns: auto min(10ch, 20vw) min(10ch, 20vw);
 }
 
@@ -133,7 +166,7 @@ input[type="button"]:active, input[type="submit"]:active {
 }
 
 #todo-list [data-todo-status="done"] .todo-item-text {
-    color: rgb(130 180 255);
+    color: var(--theme-text-subtle);
     text-decoration: line-through;
 }
 
