@@ -1,6 +1,9 @@
 @import "@catppuccin/palette/css/catppuccin.css";
 @import "@material-design-icons/font/filled.css";
 
+/*  TODO: Improve mobile layout
+*/
+
 /* When app code has been loaded it sets the js-active class on the document.
    Hide .no-js elements when this is the case.
  */
