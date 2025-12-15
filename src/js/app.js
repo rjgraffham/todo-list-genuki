@@ -1,5 +1,7 @@
 'use strict';
 
+import { readFile, writeFile } from './files'
+
 // Set the `js-active` class on the root element to hide the no-js content.
 document.documentElement.classList.add("js-active");
 
@@ -60,36 +62,33 @@ const exportItems = () => {
         todoItems[id] = JSON.parse(window.localStorage[id]);
     }
 
-    const exported = window.btoa(JSON.stringify(todoItems));
+    const exported = JSON.stringify(todoItems);
 
-    navigator.clipboard.writeText(exported).then(() => {
-        alert("Exported todo items to clipboard.");
-    }).catch(() => {
-        alert("Could not write to clipboard. Copy the following export string manually:\n" + exported);
-    });
+    writeFile("todo-export.json", "application/octet-stream", exported);
 };
 
 const importItems = () => {
-    const tryImport = (importString) => {
-        try {
-            const todoItems = JSON.parse(window.atob(importString));
+    readFile(["json"]).then((importedFile) => {
+        importedFile.text().then((importedText) => {
+            try {
+                const todoItems = JSON.parse(importedText);
 
-            // If we didn't throw an error already, we loaded a valid export, so clear
-            // localStorage, store the imported items to it, and then rebuild the displayed list
-            window.localStorage.clear()
-            for(const [id, entry] of Object.entries(todoItems)) {
-                window.localStorage.setItem(id, JSON.stringify(entry));
+                // If we didn't throw an error already, we loaded a valid export, so clear
+                // localStorage, store the imported items to it, and then rebuild the displayed list
+                window.localStorage.clear()
+
+                for(const [id, entry] of Object.entries(todoItems)) {
+                    window.localStorage.setItem(id, JSON.stringify(entry));
+                }
+
+                buildList();
+
+            } catch {
+                alert("Imported file did not contain a valid todo items export.")
             }
-            buildList();
-
-            alert("Imported todo items from clipboard.");
-        } catch {
-            alert("Clipboard contents were not a valid todo items export.")
-        }
-    };
-
-    navigator.clipboard.readText().then(tryImport).catch(() => {
-        tryImport(prompt("Could not read from clipboard. Paste the export string manually:"));
+        });
+    }).catch((err) => {
+        alert(err.message);
     });
 };
 
