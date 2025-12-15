@@ -34,6 +34,7 @@ jobs:
       - name: Build bundled version
         run: |
           mkdir -p build/
+          bun install
           bun build src/index.html --minify --outdir=build
 
       - name: Upload build directory as artifact
