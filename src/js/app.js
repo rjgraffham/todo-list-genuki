@@ -73,6 +73,10 @@ const importItems = () => {
             try {
                 const todoItems = JSON.parse(importedText);
 
+                // TODO: We have valid JSON, but we don't validate that it's actually a Todo List export.
+                //       Update the export/import format to include some form of versioning, and possibly
+                //       schema validation?
+
                 // If we didn't throw an error already, we loaded a valid export, so clear
                 // localStorage, store the imported items to it, and then rebuild the displayed list
                 window.localStorage.clear()
