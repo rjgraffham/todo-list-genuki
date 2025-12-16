@@ -146,35 +146,40 @@ input[type="button"]:active, input[type="submit"]:active {
 
 #todo-list li {
     list-style: none;
-    display: grid;
-    column-gap: 1rem;
-    padding: 1rem;
+    padding: 1rem 8rem 1rem 1rem;
     margin: 1rem 0;
     border-style: none;
     border-radius: 1em;
     background-color: var(--theme-item-bg);
-    grid-template-columns: auto min(10ch, 20vw) min(10ch, 20vw);
+    position: relative;
+    min-height: 2.5rem;
 }
 
-.todo-item-text {
-    grid-column: 1;
+#todo-list .remove-btn,
+#todo-list .done-btn {
+    position: absolute;
+    padding: 0.5rem;
+    box-shadow: var(--theme-input-shadow) 0.15rem 0.2rem;
+    top: 1.25rem;
+    font-weight: normal;
 }
 
-.remove-btn {
-    grid-column: 2;
+#todo-list .remove-btn:hover,
+#todo-list .done-btn:hover {
+    box-shadow: var(--theme-input-shadow) 0.175rem 0.225rem;
 }
 
-.done-btn {
-    grid-column: 3;
+#todo-list .remove-btn {
+    right: 0.75rem;
+}
+
+#todo-list .done-btn {
+    right: 4rem;
 }
 
 #todo-list [data-todo-status="done"] .todo-item-text {
     color: var(--theme-text-subtle);
     text-decoration: line-through;
-}
-
-#todo-list [data-todo-status="done"] .remove-btn {
-    grid-column: span 2;
 }
 
 #todo-list [data-todo-status="done"] .done-btn {

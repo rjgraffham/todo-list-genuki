@@ -35,24 +35,26 @@ const addListItem = (id, text, status, timestamp) => {
     entryText.innerText = text;
     thisEntry.appendChild(entryText);
 
-    const removeBtn = document.createElement("input");
-    removeBtn.classList.add("remove-btn");
-    removeBtn.type = "button";
-    removeBtn.value = "Remove";
-
-    removeBtn.addEventListener("click", () => {
-        window.localStorage.removeItem(id);
-        todoList.removeChild(thisEntry);
-    });
-
     const doneBtn = document.createElement("input");
     doneBtn.classList.add("done-btn");
+    doneBtn.classList.add("material-icons");
     doneBtn.type = "button";
-    doneBtn.value = "Done";
+    doneBtn.value = "check";
 
     doneBtn.addEventListener("click", () => {
         window.localStorage.setItem(id, JSON.stringify({text, status: "done", timestamp}));
         thisEntry.dataset.todoStatus = "done";
+    });
+
+    const removeBtn = document.createElement("input");
+    removeBtn.classList.add("remove-btn");
+    removeBtn.classList.add("material-icons");
+    removeBtn.type = "button";
+    removeBtn.value = "delete";
+
+    removeBtn.addEventListener("click", () => {
+        window.localStorage.removeItem(id);
+        todoList.removeChild(thisEntry);
     });
 
     thisEntry.appendChild(removeBtn);
