@@ -37,6 +37,7 @@ export function writeFile(filename, mimeType, contents) {
         const a = document.createElement("a");
         a.href = url;
         a.download = filename;
+        a.style.display = "none";
 
         // Firefox requires that the element exist in the document to be clicked
         document.body.appendChild(a);
