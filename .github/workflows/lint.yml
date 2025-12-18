@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Lint JS and CSS with biome
-        run: npx @biomejs/biome lint ./src/js
+        run: npx @biomejs/biome lint ./src/js ./src/css/style.css
 
       - name: Lint HTML with htmlhint
         run: npx htmlhint ./src/*.html

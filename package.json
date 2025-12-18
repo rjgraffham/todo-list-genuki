@@ -7,7 +7,7 @@
   "scripts": {
     "build": "bun build src/index.html --minify --outdir=build",
     "watch": "bun build src/index.html --minify --outdir=build --watch",
-    "test": "npx @biomejs/biome lint ./src/js && npx htmlhint ./src/*.html"
+    "test": "npx @biomejs/biome lint ./src/js ./src/css/style.css && npx htmlhint ./src/*.html"
   },
   "dependencies": {
     "@catppuccin/palette": "^1.7.1",
