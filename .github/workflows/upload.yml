@@ -35,7 +35,7 @@ jobs:
         run: |
           mkdir -p build/
           bun install
-          bun build src/index.html --minify --outdir=build
+          bun build src/index.html --minify --outdir=build --sourcemap=linked
 
       - name: Upload build directory as artifact
         uses: actions/upload-pages-artifact@v3
