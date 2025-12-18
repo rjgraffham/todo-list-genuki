@@ -3,7 +3,7 @@ export function readFile(validExtensions) {
         const input = document.createElement("input");
         input.type = "file";
 
-        input.accept = validExtensions.map(ext => "." + ext).join(",");
+        input.accept = validExtensions.map(ext => `.${ext}`).join(",");
         input.multiple = false;
         input.style.display = "none";
         document.body.appendChild(input);

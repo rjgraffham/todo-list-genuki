@@ -22,8 +22,8 @@ jobs:
       - name: Install project dependencies
         run: npm ci
 
-      - name: Lint JS with eslint
-        run: npx eslint ./src/js --ext .js,.jsx,.ts,.tsx
+      - name: Lint JS and CSS with biome
+        run: npx @biomejs/biome lint ./src/js
 
       - name: Lint HTML with htmlhint
         run: npx htmlhint ./src/*.html

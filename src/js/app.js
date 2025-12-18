@@ -1,5 +1,3 @@
-'use strict';
-
 import { readFile, writeFile } from './files'
 
 // Set the `js-active` class on the root element to hide the no-js content.
@@ -67,7 +65,7 @@ const buildList = () => {
     todoList.replaceChildren();
 
     // Build list entries for all todo items currently in localStorage.
-    let todoItems = [];
+    const todoItems = [];
     for(const id of Object.keys(window.localStorage)) {
         todoItems.push({...JSON.parse(window.localStorage.getItem(id)), id});
     }
@@ -78,7 +76,7 @@ const buildList = () => {
 }
 
 const exportItems = () => {
-    let todoItems = {};
+    const todoItems = {};
     for(const id of Object.keys(window.localStorage)) {
         todoItems[id] = JSON.parse(window.localStorage[id]);
     }
