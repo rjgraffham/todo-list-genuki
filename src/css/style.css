@@ -143,6 +143,13 @@ input[type="button"]:active, input[type="submit"]:active {
     padding: 1rem;
 }
 
+@keyframes show {
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 #todo-list li {
     list-style: none;
     padding: 1rem 8rem 1rem 1rem;
@@ -152,6 +159,9 @@ input[type="button"]:active, input[type="submit"]:active {
     background-color: var(--theme-item-bg);
     position: relative;
     min-height: 2.5rem;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: show 220ms cubic-bezier(0.31, 1.05, 0.82, 0.69) forwards;
 }
 
 #todo-list .remove-btn,
@@ -174,6 +184,10 @@ input[type="button"]:active, input[type="submit"]:active {
 
 #todo-list .done-btn {
     right: 4rem;
+}
+
+#todo-list .todo-item-text {
+    transition: color 300ms, text-decoration 300ms;
 }
 
 #todo-list [data-todo-status="done"] .todo-item-text {
